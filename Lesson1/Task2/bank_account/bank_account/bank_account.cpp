@@ -6,10 +6,10 @@ struct bank_account
     std::string name;
     double balance;
 };
-void change_balance(bank_account& p)
+
+void change_balance(bank_account& p, double balance)
 {
-    std::cout << "Введите новый баланс: \n";
-    std::cin >> p.balance;
+    p.balance = balance;
 }
 
 int main(int argc, char** argv)
@@ -22,6 +22,9 @@ int main(int argc, char** argv)
     std::cin >> pers.name;
     std::cout << "Введите баланс: \n";
     std::cin >> pers.balance;
-    change_balance(pers);
+    std::cout << "Введите новый баланс: \n";
+    double new_balance;
+    std::cin >> new_balance;
+    change_balance(pers, new_balance);
     std::cout << "Номер счета: " << pers.score << "\n" << "Имя: " << pers.name << "\n" << "Баланс: " << pers.balance << "\n";
 }
