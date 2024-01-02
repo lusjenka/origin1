@@ -18,7 +18,7 @@ void output_stuct(adress& p) {
 }
 
 int main(int argc, char** argv) {
-    system("chcp 1251>null");
+    system("chcp 1251>nul");
     adress adr;
     std::cout << "Введите город: \n";
     std::cin >> adr.city;

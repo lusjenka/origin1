@@ -1,5 +1,5 @@
 ﻿// month.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
-
+//
 
 #include <iostream>
 
@@ -21,7 +21,7 @@ enum class months
 
 int main()
 {
-    system("chcp 1251>null");
+    system("chcp 1251>nul");
     std::cout << "Введите номер месяца : \n";
     int x;
     std::cin >> x;
