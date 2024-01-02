@@ -14,7 +14,7 @@ void change_balance(bank_account& p, double balance)
 
 int main(int argc, char** argv)
 {
-    system("chcp 1251>null");
+    system("chcp 1251>nul");
     bank_account pers;
     std::cout << "Введите номер счета: \n";
     std::cin >> pers.score;
