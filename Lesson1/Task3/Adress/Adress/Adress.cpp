@@ -28,7 +28,7 @@ int main(int argc, char** argv) {
     std::cin >> adr.number_house;
     std::cout << "Введите номер квартиры: \n";
     std::cin >> adr.number_flat;
-    std::cout << "Введите индекс: \n";
+    std::cout << "Введите ваш индекс: \n";
     std::cin >> adr.index;
     output_stuct(adr);
 
