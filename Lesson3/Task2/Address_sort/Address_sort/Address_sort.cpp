@@ -29,7 +29,19 @@ public:
         std::cout << sity << " " << street << " " << house << " " << flat << std::endl;//выводим для наглядности
         return k;
     }
- 
+    void sort(address* addresses, int size) {
+        for (int j = 0; j < size; ++j) {
+            for (int i = 0; i < size - 1; ++i) {
+                if (addresses[i].sity > addresses[i + 1].sity) {
+                    address tmp = addresses[i];
+                    addresses[i] = addresses[i + 1];
+                    addresses[i + 1] = tmp;
+                }
+            }
+        }
+
+    }
+       
     void setLog(std::ifstream& fin)
     {
         fin >> this->sity;
@@ -37,7 +49,7 @@ public:
         fin >> this->house;
         fin >> this->flat;
     }
-
+   
 };
 
 int main()
@@ -53,20 +65,24 @@ int main()
         size_arr = std::stoi(word);
 
         address* address_arr = new address[size_arr];//выделяем память под массив
+        
 
-
-        for (int i = 0; i < size_arr; i++) {
-
+       for (int i = 0; i < size_arr; i++) {
+            
             address_arr[i].setLog(fin);
         }
 
-        std::ofstream fout("../out.txt");
-        
-        fout << size_arr << std::endl;//выводим кол-во адресов
-        for (int i = size_arr - 1; i >= 0; i--)
+       address_arr[size_arr].sort(address_arr, size_arr);
+
+       std::ofstream fout("../out.txt");
+       fout << size_arr << std::endl;
+
+        for(int i = 0; i < size_arr; i++)
         {
-            fout << address_arr[i].getLog() << std::endl;
+            fout << address_arr[i].getLog()<<std::endl;
+            
         }
+        
 
         fin.close();
         fout.close();
@@ -79,5 +95,4 @@ int main()
     return 0;
 
 }
-
 
