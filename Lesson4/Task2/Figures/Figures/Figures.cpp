@@ -2,6 +2,10 @@
 
 class Figure
 {
+protected:
+    int a, b, c, d, A, B, C, D;
+
+
 public:
     std::string name;
     int sides_count;
@@ -21,7 +25,18 @@ public:
     void get_sides_count() {
         std::cout << name <<  std::endl;
     }
-
+public:
+    void get_figure() {
+        if (sides_count == 4) {
+            std::cout << name << "\nСтороны: " << a << ", " << b << ", " << c << ", " << d << "\nУглы: " << A << ", " << B << ", " << C << ", " << D << std::endl << std::endl;
+        }
+        else if (sides_count == 3) { std::cout << name << "\nСтороны: " << a << ", " << b << ", " << c << "\nУглы: " << A << ", " << B << ", " << C << std::endl << std::endl; }
+    }
+public:
+    virtual
+    void print_info(Figure* tr) {
+        tr->get_figure();
+    };
 };
 
 class Triangle : public Figure
@@ -45,14 +60,6 @@ protected:
         this->A = A;
         this->B = B;
         this->C = C;
-    }
-
-protected:
-    int a,b,c,A,B,C;  
-
-public:
-    void get_Triangle() {
-        std::cout << name << "\nСтороны: " << a << ", " << b << ", " << c << "\nУглы: " << A << ", " << B << ", " << C << std::endl<<std::endl;
     }
 };
 
@@ -81,12 +88,7 @@ protected:
         this->C = C;
         this->D = D;
     }
-protected:
-    int a, b, c, d, A, B, C, D;
-public:
-    void get_Quadrangle() {
-        std::cout << name << "\nСтороны: " << a << ", " << b << ", " << c <<  ", " << d << "\nУглы: " << A << ", " << B << ", " << C << ", " << D << std::endl<<std::endl;
-    }
+
 };
 class Parallelogram : public Quadrangle {
 
@@ -194,8 +196,7 @@ public:
          C = A = 55;
          B = 70;
     }
-
- };
+};
 class Ravnostor_Triangle : public Triangle {
 private:
     Ravnostor_Triangle(int a)  {
@@ -215,16 +216,6 @@ public:
     }
 
 };
-void print_info_t(Triangle* tr) {
-          tr->get_Triangle();
-   
-    
-};
-void print_info_q(Quadrangle* tr) {
-           tr->get_Quadrangle();
-    
-
-};
 
 int main()
 {
@@ -240,17 +231,33 @@ int main()
     Romb romb;
     square square;
 
-    print_info_t(&triangle);
-    print_info_t(&pryamoug_Triangle);
-    print_info_t(&ravnostor_Triangle);
-    print_info_t(&ravnobed_Triangle);
-    print_info_q(&quadrangle);
-    print_info_q(&parallelogram);
-    print_info_q(&rectangle);
-    print_info_q(&romb);
-    print_info_q(&square);
+    Figure* par_child1 = &triangle;
+    par_child1->print_info(&triangle);
 
-    
+    Figure* par_child2 = &quadrangle;
+    par_child2->print_info(&quadrangle);
+
+    Figure* par_child3 = &pryamoug_Triangle;
+    par_child3->print_info(&pryamoug_Triangle);
+
+    Figure* par_child4 = &ravnostor_Triangle;
+    par_child4->print_info(&ravnostor_Triangle);
+
+    Figure* par_child5 = &ravnobed_Triangle;
+    par_child5->print_info(&ravnobed_Triangle);
+
+    Figure* par_child6 = &parallelogram;
+    par_child6->print_info(&parallelogram);
+
+    Figure* par_child7 = &rectangle;
+    par_child7->print_info(&rectangle);
+
+    Figure* par_child8 = &romb;
+    par_child8->print_info(&romb);
+
+    Figure* par_child9 = &square;
+    par_child9->print_info(&square);
+
 
 }
 
