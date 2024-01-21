@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{8d3c198a-9609-4518-8ee8-87f6684c9ea5}</ProjectGuid>
-    <RootNamespace>Figures3</RootNamespace>
+    <ProjectGuid>{2dc33d28-7d5b-458d-b4d5-5aa9d7563c1f}</ProjectGuid>
+    <RootNamespace>Counter</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -127,29 +127,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="cppFigure.cpp" />
-    <ClCompile Include="cppParallelogram.cpp" />
-    <ClCompile Include="cppPryamoug_Triangle.cpp" />
-    <ClCompile Include="cppQuadrangle.cpp" />
-    <ClCompile Include="cppRavnobed_Triangle.cpp" />
-    <ClCompile Include="cppRavnostor_Triangle.cpp" />
-    <ClCompile Include="cppRectangle.cpp" />
-    <ClCompile Include="cppRomb.cpp" />
-    <ClCompile Include="cppSquare.cpp" />
-    <ClCompile Include="cppTriangle.cpp" />
-    <ClCompile Include="Figures 3.cpp" />
+    <ClCompile Include="Counter.cpp" />
+    <ClCompile Include="cppCounter.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\hFigure.h" />
-    <ClInclude Include="hParallelogram.h" />
-    <ClInclude Include="hPryamoug_Triangle.h" />
-    <ClInclude Include="hQuadrangle.h" />
-    <ClInclude Include="hRavnobed_Triangle.h" />
-    <ClInclude Include="hRavnostor_Triangle.h" />
-    <ClInclude Include="hRectangle.h" />
-    <ClInclude Include="hRomb.h" />
-    <ClInclude Include="hSquare.h" />
-    <ClInclude Include="hTriangle.h" />
+    <ClInclude Include="hCounter.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -4,17 +4,22 @@ class Figure
 {
 protected:
     int a, b, c, d, A, B, C, D;
-
-
 public:
     std::string name;
     int sides_count;
 protected:
-    Figure();
+    Figure(std::string name, int sides_count)
+    {
+        this->name = name;
+        this->sides_count = sides_count;
+    }
 public:
-    Figure();
-public:
-    void get_sides_count();
+    Figure()
+    {
+        name = "Фигура: ";
+        sides_count = 0;
+    }
+     void get_sides_count();
 public:
     virtual
         void print_info();
