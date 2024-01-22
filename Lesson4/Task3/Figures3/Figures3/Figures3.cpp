@@ -1,5 +1,8 @@
 ﻿#include <iostream>
+void print_info() {
 
+
+}
 class Figure
 {
 protected:
@@ -29,16 +32,26 @@ public:
 public:
     virtual
         void print_info() {
-        std::cout << name;
-        bool_check();
-        std::cout << "\nКоличество сторон: " << sides_count << std::endl << std::endl;
+        
+            std::cout << name;
+            if (check()) { std::cout << "\nПравильная "; }
+            else { std::cout << "\nНеправильная "; }
+            if (sides_count == 0) {
+            std::cout << "\nКоличество сторон: " << sides_count << std::endl << std::endl;
+        }
+        else if (sides_count == 3) {
+                std::cout << "\nСтороны: " << a << ", " << b << ", " << c << "\nУглы: " << A << ", " << B << ", " << C << std::endl << std::endl;
+            }
+        else if (sides_count==4) {
+                std::cout << "\nСтороны: " << a << ", " << b << ", " << c << ", " << d << "\nУглы: " << A << ", " << B << ", " << C << ", " << D << std::endl << std::endl;
+        }
     };
 public:
     virtual
-        void bool_check() {
+        bool check() {
         if (sides_count == 0)
-        {std::cout << "\nПравильная ";}
-        else{ std::cout << "\nНеправильная "; }
+        {return true;}
+        else{ return false; }
     };
 };
 
@@ -65,19 +78,10 @@ protected:
         this->C = C;
     }
 public:
-    void print_info() override {
-        std::cout << name;
-        bool_check();
-        std::cout << "\nКоличество сторон: " << sides_count;
-        std::cout << "\nСтороны: " << a << ", " << b << ", " << c << "\nУглы: " << A << ", " << B << ", " << C << std::endl << std::endl;
-    };
-public:
-    void bool_check() override {
+    bool check() override {
         if (A + B + C == 180)
-        {
-            std::cout << "\nПравильная ";
-        }
-        else { std::cout << "\nНеправильная "; }
+        {return true;}
+        else {return false;}
     };
 };
 class Quadrangle : public Figure {
@@ -106,19 +110,10 @@ protected:
         this->D = D;
     }
 public:
-    void print_info() override {
-        std::cout << name;
-        bool_check();
-        std::cout << "\nКоличество сторон: " << sides_count;
-        std::cout << "\nСтороны: " << a << ", " << b << ", " << c << ", " << d << "\nУглы: " << A << ", " << B << ", " << C << ", " << D << std::endl << std::endl;
-    };
-public:
-    void bool_check() override {
+    bool check() override {
         if (A + B + C + D == 360 && sides_count == 4)
-        {
-            std::cout << "\nПравильная ";
-        }
-        else { std::cout << "\nНеправильная "; }
+        {return true;}
+        else {return false;}
     };
 };
 class Parallelogram : public Quadrangle {
@@ -140,12 +135,15 @@ private:
         this->B = B = D;
     }
 public:
-    void bool_check() override {
-        if (A == C && B == D && a == c && b == d)
-        {
-            std::cout << "\nПравильная ";
-        }
-        else { std::cout << "\nНеправильная "; }
+     bool check() override {
+         if (Quadrangle::check()) {
+             if (A == C && B == D && a == c && b == d)
+             {
+                 return true;
+             }
+             else { return false; }
+         }
+         else { return false; }
     };
 };
 class Rectangle : public Parallelogram {
@@ -164,12 +162,15 @@ private:
 
     }
 public:
-    void bool_check() override {
-        if (a == c && b == d && A == 90 && B == 90 && C == 90 && D == 90)
-        {
-            std::cout << "\nПравильная ";
-        }
-        else { std::cout << "\nНеправильная "; }
+     bool check() override {
+         if (Parallelogram::check()) {
+             if (a == c && b == d && A == 90 && B == 90 && C == 90 && D == 90)
+             {
+                 return true;
+             }
+             else { return false; }
+         }
+         else { return false; }
     };
 };
 class Romb : public Parallelogram {
@@ -187,12 +188,15 @@ private:
         this->B = B = D;
     }
 public:
-    void bool_check() override {
-        if (a == b && b == c && c == d && A == C && B == D)
-        {
-            std::cout << "\nПравильная ";
-        }
-        else { std::cout << "\nНеправильная "; }
+     bool check() override {
+         if (Parallelogram::check()) {
+             if (a == b && b == c && c == d && A == C && B == D)
+             {
+                 return true;
+             }
+             else { return false; }
+         }
+         else { return false; }
     };
 };
 class square : public Rectangle {
@@ -208,12 +212,15 @@ private:
 
     }
 public:
-    void bool_check() override {
-        if (A == C && C == B && B == D && D == 90 && a == c && c == b && b == d)
-        {
-            std::cout << "\nПравильная ";
-        }
-        else { std::cout << "\nНеправильная "; }
+     bool check() override {
+         if (Rectangle::check()) {
+             if (A == C && C == B && B == D && D == 90 && a == c && c == b && b == d)
+             {
+                 return true;
+             }
+             else { return false; }
+         }
+         else { return false; }
     };
 };
 class Pryamoug_Triangle : public Triangle {
@@ -227,12 +234,16 @@ private:
         this->C = C;
     }
 public:
-    void bool_check() override {
-        if (C == 90)
-        {
-            std::cout << "\nПравильная ";
+    bool check() override {
+        if (Triangle::check()) {
+            if (C == 90)
+            {
+                return true;
+            }
+            else { return false; }
         }
-        else { std::cout << "\nНеправильная "; }
+        else { return false; }
+    
     };
 public:
     Pryamoug_Triangle() {
@@ -242,7 +253,7 @@ public:
         c = 30;
         C = 90;
         A = 20;
-        B = 70;
+        B = 60;
     }
 };
 class Ravnobed_Triangle : public Triangle {
@@ -264,12 +275,15 @@ public:
         B = 70;
     }
 public:
-    void bool_check() override {
-        if (a == b && A == C)
-        {
-            std::cout << "\nПравильная ";
-        }
-        else { std::cout << "\nНеправильная "; }
+        bool check() override {
+            if (Triangle::check()) {
+                if (a == b && A == C)
+                {
+                    return true;
+                }
+                else { return false; }
+            }
+            else { return false; }
     };
 };
 class Ravnostor_Triangle : public Triangle {
@@ -294,12 +308,13 @@ public:
         C = 60;
     }
 public:
-    void bool_check() override {
+     bool check() override {
+         if (Triangle::check()) {
         if (a == b && b == c && A == B && B == C)
-        {
-            std::cout << "\nПравильная ";
-        }
-        else { std::cout << "\nНеправильная "; }
+        {return true;}
+        else { return false;}
+         }
+         else { return false; }
     };
 };
 
