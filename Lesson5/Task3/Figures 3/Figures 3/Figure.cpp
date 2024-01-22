@@ -1,7 +1,18 @@
 #include <iostream>
-#include "hFigure.h"
-#pragma once
+#include "Figure.h"
 
+
+Figure::Figure(std::string name, int sides_count)
+    {
+        this->name = name;
+        this->sides_count = sides_count;
+    }
+
+Figure::Figure()
+    {
+        name = "Фигура: ";
+        sides_count = 0;
+    }
    void Figure::get_sides_count() {
         std::cout << name << std::endl;
     }

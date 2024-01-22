@@ -18,66 +18,66 @@
     <ClCompile Include="Figures 3.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="cppFigure.cpp">
+    <ClCompile Include="Figure.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="cppTriangle.cpp">
+    <ClCompile Include="Parallelogram.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="cppQuadrangle.cpp">
+    <ClCompile Include="Pryamoug_Triangle.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="cppParallelogram.cpp">
+    <ClCompile Include="Quadrangle.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="cppRectangle.cpp">
+    <ClCompile Include="Ravnobed_Triangle.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="cppRomb.cpp">
+    <ClCompile Include="Ravnostor_Triangle.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="cppSquare.cpp">
+    <ClCompile Include="Rectangle.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="cppPryamoug_Triangle.cpp">
+    <ClCompile Include="Romb.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="cppRavnobed_Triangle.cpp">
+    <ClCompile Include="Square.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="cppRavnostor_Triangle.cpp">
+    <ClCompile Include="Triangle.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\hFigure.h">
+    <ClInclude Include="Figure.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="hTriangle.h">
-      <Filter>Исходные файлы</Filter>
-    </ClInclude>
-    <ClInclude Include="hQuadrangle.h">
+    <ClInclude Include="Parallelogram.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="hParallelogram.h">
+    <ClInclude Include="Pryamoug_Triangle.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="hRectangle.h">
+    <ClInclude Include="Quadrangle.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="hRomb.h">
+    <ClInclude Include="Ravnobed_Triangle.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="hSquare.h">
+    <ClInclude Include="Ravnostor_Triangle.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="hPryamoug_Triangle.h">
+    <ClInclude Include="Rectangle.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="hRavnobed_Triangle.h">
+    <ClInclude Include="Romb.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="hRavnostor_Triangle.h">
+    <ClInclude Include="Square.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Triangle.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

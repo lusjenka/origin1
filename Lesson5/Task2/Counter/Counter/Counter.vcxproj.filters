@@ -18,12 +18,12 @@
     <ClCompile Include="Counter.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="cppCounter.cpp">
+    <ClCompile Include="Counter_.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="hCounter.h">
+    <ClInclude Include="Counter.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

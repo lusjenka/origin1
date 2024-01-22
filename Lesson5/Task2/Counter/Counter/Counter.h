@@ -6,12 +6,9 @@ private:
     int count;
 public:
 
-    Counter(int count) {
-        this->count = count;
-    }
-    Counter() {
-        count = 1;
-    }
+    Counter(int count);
+    Counter();
+    
     int get_priv_field();
 
     void plus();

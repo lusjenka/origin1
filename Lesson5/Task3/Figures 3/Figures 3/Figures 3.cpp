@@ -1,14 +1,14 @@
 ﻿#include <iostream>
-#include "hFigure.h"
-#include "hTriangle.h"
-#include "hQuadrangle.h"
-#include "hParallelogram.h"
-#include "hRectangle.h"
-#include "hRomb.h"
-#include "hSquare.h"
-#include "hPryamoug_Triangle.h"
-#include "hRavnobed_Triangle.h"
-#include "hRavnostor_Triangle.h"
+#include "Figure.h"
+#include "Triangle.h"
+#include "Quadrangle.h"
+#include "Parallelogram.h"
+#include "Rectangle.h"
+#include "Romb.h"
+#include "Square.h"
+#include "Pryamoug_Triangle.h"
+#include "Ravnobed_Triangle.h"
+#include "Ravnostor_Triangle.h"
 
 
 int main()

@@ -127,29 +127,29 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="cppFigure.cpp" />
-    <ClCompile Include="cppParallelogram.cpp" />
-    <ClCompile Include="cppPryamoug_Triangle.cpp" />
-    <ClCompile Include="cppQuadrangle.cpp" />
-    <ClCompile Include="cppRavnobed_Triangle.cpp" />
-    <ClCompile Include="cppRavnostor_Triangle.cpp" />
-    <ClCompile Include="cppRectangle.cpp" />
-    <ClCompile Include="cppRomb.cpp" />
-    <ClCompile Include="cppSquare.cpp" />
-    <ClCompile Include="cppTriangle.cpp" />
+    <ClCompile Include="Figure.cpp" />
     <ClCompile Include="Figures 3.cpp" />
+    <ClCompile Include="Parallelogram.cpp" />
+    <ClCompile Include="Pryamoug_Triangle.cpp" />
+    <ClCompile Include="Quadrangle.cpp" />
+    <ClCompile Include="Ravnobed_Triangle.cpp" />
+    <ClCompile Include="Ravnostor_Triangle.cpp" />
+    <ClCompile Include="Rectangle.cpp" />
+    <ClCompile Include="Romb.cpp" />
+    <ClCompile Include="Square.cpp" />
+    <ClCompile Include="Triangle.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\hFigure.h" />
-    <ClInclude Include="hParallelogram.h" />
-    <ClInclude Include="hPryamoug_Triangle.h" />
-    <ClInclude Include="hQuadrangle.h" />
-    <ClInclude Include="hRavnobed_Triangle.h" />
-    <ClInclude Include="hRavnostor_Triangle.h" />
-    <ClInclude Include="hRectangle.h" />
-    <ClInclude Include="hRomb.h" />
-    <ClInclude Include="hSquare.h" />
-    <ClInclude Include="hTriangle.h" />
+    <ClInclude Include="Figure.h" />
+    <ClInclude Include="Parallelogram.h" />
+    <ClInclude Include="Pryamoug_Triangle.h" />
+    <ClInclude Include="Quadrangle.h" />
+    <ClInclude Include="Ravnobed_Triangle.h" />
+    <ClInclude Include="Ravnostor_Triangle.h" />
+    <ClInclude Include="Rectangle.h" />
+    <ClInclude Include="Romb.h" />
+    <ClInclude Include="Square.h" />
+    <ClInclude Include="Triangle.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

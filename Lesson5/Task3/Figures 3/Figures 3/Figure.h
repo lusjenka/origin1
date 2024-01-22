@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+
 class Figure
 {
 protected:
@@ -8,17 +9,9 @@ public:
     std::string name;
     int sides_count;
 protected:
-    Figure(std::string name, int sides_count)
-    {
-        this->name = name;
-        this->sides_count = sides_count;
-    }
+    Figure(std::string name, int sides_count);
 public:
-    Figure()
-    {
-        name = "Фигура: ";
-        sides_count = 0;
-    }
+    Figure();
      void get_sides_count();
 public:
     virtual
