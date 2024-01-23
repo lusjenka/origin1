@@ -17,6 +17,8 @@ int main(int argc, char** argv)
 
     std::cout << "Не определен" << std::endl;
 
+#error Ne opredelen
+
 #endif
 
 #if defined MODE
