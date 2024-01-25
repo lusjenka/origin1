@@ -217,6 +217,11 @@ public:
 
 };
 
+void print_info(Figure* f)
+{
+    f->print_info(f);
+}
+
 int main()
 {
     setlocale(LC_ALL, "rus");
