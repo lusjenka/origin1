@@ -39,30 +39,38 @@ public:
         tr->get_figure();
     };
 };
-class MyEx : std::domain_error
-{public:
-    MyEx(std::string message) : domain_error{ message } {}
-    std::string getMessage() const { return message; }
+class MyEx
+{
 private:
     std::string message;
+    std::string name;
+public:
+    MyEx(std::string message, std::string name) {
+        this->message = message;
+        this->name = name;
+    }
+public:
+    std::string getMessage() const { std::cout << "Фигура " << name << "не создана. "; return  message; }
 };
 
 
 class Triangle : public Figure
 {
 public:
-    Triangle() {
+
+    Triangle() :Triangle (10,20,30,60,50,60) {
         sides_count = 3;
         name = "Треугольник: ";
-        a = 10;
+        /*a = 10;
         b = 20;
         c = 30;
         A = 60;
         B = 50;
-        C = 60;
-        if (A + B + C != 180) { throw MyEx{ "Сумма углов не 180!" }; }
-    }
+        C = 60;*/
+        }
+
 protected:
+
     Triangle(int a, int b, int c, int A, int B, int C) {
         this->a = a;
         this->b = b;
@@ -70,72 +78,77 @@ protected:
         this->A = A;
         this->B = B;
         this->C = C;
+        if (A + B + C != 180) { throw MyEx("Сумма углов не 180!", name); }
     }
 };
 
 class Quadrangle : public Figure {
 public:
-    Quadrangle() {
+    Quadrangle(): Quadrangle(10,20,30,40,90,90,90,70) {
+       
         sides_count = 4;
         name = "Четырехугольник: ";
-        a = 10;
+       /* a = 10;
         b = 20;
         c = 30;
         d = 40;
-        A = 50;
-        B = 60;
-        C = 70;
-        D = 80;
+        A = 90;
+        B = 90;
+        C = 90;
+        D = 90;*/
     }
-protected:
+private:
     Quadrangle(int a, int b, int c, int d, int A, int B, int C, int D) {
-        this->a = a;
+       /* this->a = a;
         this->b = b;
         this->c = c;
         this->d = d;
         this->A = A;
         this->B = B;
         this->C = C;
-        this->D = D;
+        this->D = D;*/
+        if (A + B + C + D != 360) { 
+            throw MyEx("Сумма углов не 360!", name); 
+        }
     }
-
 };
 class Parallelogram : public Quadrangle {
-
 public:
-
-    Parallelogram() {
+    Parallelogram() : Parallelogram("Параллелограмм: ",40,30,40,30) {
         name = "Параллелограмм: ";
-        a = c = 20;
-        b = d = 30;
-        A = C = 30;
-        B = D = 40;
+        /*a = 40;
+        c = 20;
+        b = 30;
+        d = 30;
+        A = 40;
+        C = 30;
+        B = 30;
+        D = 40;*/
     }
 private:
-    Parallelogram(int a, int b, int A, int D) {
-        this->a = a = c;
+    Parallelogram(std::string name, int a, int b, int A, int D) {
+       /* this->a = a = c;
         this->b = b = d;
         this->A = A = C;
-        this->B = B = D;
+        this->B = B = D;*/
+        if (a != b) { std::cout << "Противоположные стороны не равны!"; }
     }
-
 };
 class Rectangle : public Parallelogram {
 public:
-    Rectangle() {
+    Rectangle() : Rectangle(10,20,90) {
         name = "Прямоугольник: ";
-        a = c = 10;
+        /*a = c = 10;
         b = d = 20;
-        A = C = B = D = 90;
+        A = C = B = D = 90;*/
     }
 private:
     Rectangle(int a, int b, int A) {
-        this->a = a = c;
+       /* this->a = a = c;
         this->b = b = d;
-        this->A = A = C = B = D;
-
+        this->A = A = C = B = D;*/
+        if (A != 90) { throw MyEx("Неверные параметры!", name); }
     }
-
 };
 class Romb : public Parallelogram {
 public:
@@ -151,8 +164,6 @@ private:
         this->A = A = C;
         this->B = B = D;
     }
-
-
 };
 class square : public Rectangle {
 public:
@@ -164,9 +175,7 @@ public:
 private:
     square(int a) {
         this->a = a = c = b;
-
     }
-
 };
 class Pryamoug_Triangle : public Triangle {
 private:
@@ -176,7 +185,6 @@ private:
         this->c = c;
         this->A = A;
         this->B = B;
-
     }
 public:
     Pryamoug_Triangle() {
@@ -188,7 +196,6 @@ public:
         A = 20;
         B = 70;
     }
-
 };
 class Ravnobed_Triangle : public Triangle {
 private:
@@ -216,7 +223,6 @@ private:
         this->A = 60;
         this->B = 60;
         this->C = 60;
-
     }
 public:
     Ravnostor_Triangle() {
@@ -224,24 +230,25 @@ public:
         a = b = c;
         A = B = C = 60;
     }
-
 };
 
+void print_info(Figure* f) {
+    f->print_info(f);
+};
 int main()
 {
     setlocale(LC_ALL, "rus");
     std::cout << "Фигуры\n\n";
-    Triangle triangle;
-    Quadrangle quadrangle;
-    Pryamoug_Triangle pryamoug_Triangle;
+   
+    /*Pryamoug_Triangle pryamoug_Triangle;
     Ravnostor_Triangle ravnostor_Triangle;
     Ravnobed_Triangle ravnobed_Triangle;
-    Parallelogram parallelogram;
-    Rectangle rectangle;
+        
     Romb romb;
-    square square;
+    square square;*/
     try
     {
+        Triangle triangle;
         Figure* par_child1 = &triangle;
         par_child1->print_info(&triangle);
     }
@@ -249,11 +256,37 @@ int main()
     {
         std::cout << ex.getMessage() << std::endl;
     }
-    
-
-    Figure* par_child2 = &quadrangle;
-    par_child2->print_info(&quadrangle);
-
+        try
+    {
+        Quadrangle quadrangle;
+        Figure* par_child2 = &quadrangle;
+        par_child2->print_info(&quadrangle);
+    }
+    catch (const MyEx& ex)
+    {
+         std::cout << ex.getMessage() << std::endl;
+    }
+    try
+    {
+        Parallelogram parallelogram;
+        Figure* par_child6 = &parallelogram;
+        par_child6->print_info(&parallelogram);
+    }
+    catch (const MyEx& ex)
+    {
+         std::cout << ex.getMessage() << std::endl;
+    }
+    try
+    {
+        Rectangle rectangle;
+        Figure* par_child7 = &rectangle;
+        par_child7->print_info(&rectangle);
+    }
+    catch (const MyEx& ex)
+    {
+        std::cout << ex.getMessage() << std::endl;
+    }
+    /*
     Figure* par_child3 = &pryamoug_Triangle;
     par_child3->print_info(&pryamoug_Triangle);
 
@@ -262,19 +295,14 @@ int main()
 
     Figure* par_child5 = &ravnobed_Triangle;
     par_child5->print_info(&ravnobed_Triangle);
-
-    Figure* par_child6 = &parallelogram;
-    par_child6->print_info(&parallelogram);
-
-    Figure* par_child7 = &rectangle; 
-    par_child7->print_info(&rectangle);
+    
 
     Figure* par_child8 = &romb;
     par_child8->print_info(&romb);
 
     Figure* par_child9 = &square;
     par_child9->print_info(&square);
-
+    */
 
 }
 

@@ -34,8 +34,8 @@ public:
     }
 public:
     virtual
-    void print_info(Figure* tr) {
-        tr->get_figure();
+    void print_info() {
+        this->get_figure();
     };
 };
 
@@ -219,7 +219,7 @@ public:
 
 void print_info(Figure* f)
 {
-    f->print_info(f);
+    f->print_info();
 }
 
 int main()
@@ -236,32 +236,15 @@ int main()
     Romb romb;
     square square;
 
-    Figure* par_child1 = &triangle;
-    par_child1->print_info(&triangle);
-
-    Figure* par_child2 = &quadrangle;
-    par_child2->print_info(&quadrangle);
-
-    Figure* par_child3 = &pryamoug_Triangle;
-    par_child3->print_info(&pryamoug_Triangle);
-
-    Figure* par_child4 = &ravnostor_Triangle;
-    par_child4->print_info(&ravnostor_Triangle);
-
-    Figure* par_child5 = &ravnobed_Triangle;
-    par_child5->print_info(&ravnobed_Triangle);
-
-    Figure* par_child6 = &parallelogram;
-    par_child6->print_info(&parallelogram);
-
-    Figure* par_child7 = &rectangle;
-    par_child7->print_info(&rectangle);
-
-    Figure* par_child8 = &romb;
-    par_child8->print_info(&romb);
-
-    Figure* par_child9 = &square;
-    par_child9->print_info(&square);
+   print_info(&triangle);
+   print_info(&quadrangle);
+   print_info(&pryamoug_Triangle);
+   print_info(&ravnostor_Triangle);
+   print_info(&ravnobed_Triangle);
+   print_info(&parallelogram);
+   print_info(&rectangle);
+   print_info(&romb);
+   print_info(&square);
 
 
 }
