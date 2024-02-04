@@ -60,9 +60,11 @@ public:
 		return Fraction(numerator_, denominator_);
 	}
 	Fraction operator++(int) {
-		numerator_ = numerator_ + denominator_;
+		int Vnumerator_ = numerator_;
+		int Vdenominator_ = denominator_;
+		numerator_ += denominator_;
 		denominator_ = denominator_;
-		return Fraction(numerator_, denominator_);
+		return Fraction(Vnumerator_, Vdenominator_);
 	}
 	Fraction operator--() {
 		numerator_ = numerator_ - denominator_;
@@ -74,8 +76,6 @@ public:
 		denominator_ = denominator_;
 		return Fraction(numerator_, denominator_);
 	}
-
-
 };
 
 int main()
