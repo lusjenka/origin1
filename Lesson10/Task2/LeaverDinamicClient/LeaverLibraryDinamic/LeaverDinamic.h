@@ -1,5 +1,5 @@
 #pragma once
-#ifdef LeaverLibraryDinamic_EXPORTS
+#ifdef LEAVERLIBRARYDINAMIC_EXPORTS
 #define MATHPOWERLIBRARY_API __declspec(dllexport)
 #else
 #define MATHPOWERLIBRARY_API __declspec(dllimport)
