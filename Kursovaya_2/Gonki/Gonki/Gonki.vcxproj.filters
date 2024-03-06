@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="LeaverDinamicClient.cpp">
+    <ClCompile Include="Gonki.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
