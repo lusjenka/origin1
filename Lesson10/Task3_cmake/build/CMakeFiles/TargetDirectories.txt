@@ -1,0 +1,4 @@
+E:/Study/Lesson10/Task3_cmake/build/CMakeFiles/MathPowerDynamicLib.dir
+E:/Study/Lesson10/Task3_cmake/build/CMakeFiles/MathPowerExe.dir
+E:/Study/Lesson10/Task3_cmake/build/CMakeFiles/ALL_BUILD.dir
+E:/Study/Lesson10/Task3_cmake/build/CMakeFiles/ZERO_CHECK.dir
