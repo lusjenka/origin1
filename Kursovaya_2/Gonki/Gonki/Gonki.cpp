@@ -1,15 +1,7 @@
 ﻿#include <iostream>
 
-enum class months
-{
-    Ботинки_вездеходы = 1,
-    Метла,
-    Верблюд,
-    Кентавр,
-    Орёл,
-    Верблюд_быстроход,
-    Ковёр_самолет
-};
+
+void delete_two_dim_array(double** matrix, int rows);
 
 class Transport
 {
@@ -17,21 +9,36 @@ protected:
     int type;
     int id;
     std::string name;
-    int speed;
-    int time_driving;
-    int time_rest_1;
-    int ratio_1;
+    double speed;
+    double time_driving;
+    double time_rest_1;
+    double ratio_1;
+
 public:
-    void gonka(int* arr, int type, int dist) {
-        this->type = type;
-        std::cout << name << "Результаты гонки: " << dist << std::endl;
+    void get_info_TS() {
+       std::cout << id << ". " << name << std::endl;
     }
+public:
+    virtual
+        void print_info() {
+        this->get_info_TS();
+    };
+public:
+    void get_info_type() {
+        std::cout << type << ". " << name << std::endl;
+    }
+public:
+    virtual
+        void print_type() {
+        this->get_info_type();
+    };
+
 };
 class Zemlya :public Transport
 {
 public:
     Zemlya(){
-        type = 1;//наземный
+        type = 1;
         name = "Гонка для наземного транспорта";
     }
     
@@ -41,7 +48,7 @@ class Vozduh :public Transport
 {
 public:
     Vozduh() {
-        type = 2;//воздушный
+        type = 2;
         name = "Гонка для воздушного транспорта";
     }
 
@@ -50,7 +57,7 @@ class Vozduh_Zemlya :public Transport
 {
 public:
     Vozduh_Zemlya() {
-        type = 3;//наземный и воздушный
+        type = 3;
         name = "Гонка для наземного и воздушного транспорта";
     }
 
@@ -59,7 +66,7 @@ public:
 class Botinki_vezdehody :public Zemlya
 {
 public:
-    int time_rest_2;
+    double time_rest_2;
 public:
     Botinki_vezdehody() {
         name = "Ботинки-вездеходы";
@@ -70,8 +77,8 @@ public:
         time_rest_2 = 5;
     }
     int result(int dist) {
-        int time_not_rest, all_time;
-        time_not_rest = dist / speed;
+        double time_not_rest, all_time;
+        time_not_rest = static_cast<double>(dist) / speed;
         all_time = time_not_rest;
         if (time_not_rest > time_driving) {
             all_time = all_time + time_rest_1;
@@ -111,7 +118,7 @@ class Verblud_bystrohod :public Zemlya
 {
 public:
     double time_rest_2;
-    int time_rest_3;
+    double time_rest_3;
 public:
     Verblud_bystrohod() {
         id = 6;
@@ -153,8 +160,8 @@ public:
        
     }
     int result(int dist) {
-        int time_not_rest, all_time;
-        time_not_rest = dist / speed;
+        double time_not_rest, all_time;
+        time_not_rest = static_cast<double>(dist) / speed;
         all_time = time_not_rest;
         if ((time_not_rest - time_driving) > time_driving) {
                 for (int i = time_not_rest; i > time_driving; i = i - time_driving) {
@@ -188,7 +195,7 @@ public:
 class Verblud :public Zemlya
 {
 public:
-    int time_rest_2;
+    double time_rest_2;
 public:
     Verblud() {
         id = 3;
@@ -199,7 +206,7 @@ public:
         time_rest_2 = 8;
     }
     int result(int dist) {
-        int time_not_rest, all_time;
+        double time_not_rest, all_time;
         time_not_rest = dist / speed;
         all_time = time_not_rest;
         if (time_not_rest > time_driving) {
@@ -252,9 +259,7 @@ public:
 void print_razdelitel() {
     std::cout << "------------------------------------------------------\n";
 }
-void print_reg() {
-    std::cout << "1. Ботинки-вездеходы \n2. Метла \n3. Верблюд \n4. Кентавр \n5. Орёл \n6. Верблюд-быстроход \n7. Ковёр-самолет\n0. Завершить регистрацию\n";
-}
+
 void zareg(int x) {
     switch (x) {
     case 1: std::cout << "Ботинки-вездеходы" << " "; break;
@@ -268,47 +273,13 @@ void zareg(int x) {
     }
 }
 
-void registration(int x, int type) {
-    print_razdelitel();
-    switch (x) {
-    case 1:
-        if (type == 1 || type == 3) { std::cout << "Ботинки-вездеходы успешно зарегистрирован!" << std::endl; }
-        //if (arr[x-1]!=0) { std::cout << "Ботинки-вездеходы уже зарегистрированы!" << std::endl; }
-       // if (type == 2) {std::cout << "Попытка зарегистрировать неправильный тип ТС!" << std::endl;}
-        break;
-    case 2:
-        if (type == 2 || type == 3) { std::cout << "Метла успешно зарегистрирован!" << std::endl; }
-        //if (type == 1) { std::cout << "Попытка зарегистрировать неправильный тип ТС!" << std::endl; }
-        break;
-    case 3:
-        if (type == 1 || type == 3) { std::cout << "Верблюд успешно зарегистрирован!" << std::endl; }
-        //if (type == 2) { std::cout << "Попытка зарегистрировать неправильный тип ТС!" << std::endl; }
-        break;
-    case 4:
-        if (type == 1 || type == 3) { std::cout << "Кентавр успешно зарегистрирован!" << std::endl; }
-        // if (type == 2) { std::cout << "Попытка зарегистрировать неправильный тип ТС!" << std::endl; }
-        break;
-    case 5:
-        if (type == 2 || type == 3) { std::cout << "Орел успешно зарегистрирован!" << std::endl; }
-        // if (type == 1) { std::cout << "Попытка зарегистрировать неправильный тип ТС!" << std::endl; }
-        break;
-    case 6:
-        if (type == 1 || type == 3) { std::cout << "Верблюд-быстроход успешно зарегистрирован!" << std::endl; }
-        // if (type == 2) { std::cout << "Попытка зарегистрировать неправильный тип ТС!" << std::endl; }
-        break;
-    case 7:
-        if (type == 2 || type == 3) { std::cout << "Ковёр-самолет успешно зарегистрирован!" << std::endl; }
-        //if (type == 1) { std::cout << "Попытка зарегистрировать неправильный тип ТС!" << std::endl; }
-        break;
-    }
-}
 void reg_info(double* arr, int dist, int type){
-    switch (type) {
+   switch (type) {
     case 1: std::cout << "Гонка для наземного транспорта."; break;
     case 2: std::cout << "Гонка для воздушного транспорта."; break;
     case 3: std::cout << "Гонка для наземного и воздушного транспорта."; break;
+
     }
-    
     std::cout << "Расстояние: " << dist << std::endl;
     std::cout << "Зарегистрированные транспортные средства: ";
         for (int i = 0; i < 7; i++) {
@@ -336,35 +307,6 @@ void clear_arr(double* arr) {
         }
     }
 }
-
-void enum_print(int x) {
-    switch (x)
-    {
-    case static_cast<int>(months::Ботинки_вездеходы):
-        std::cout << "Ботинки-вездеходы ";
-        break;
-    case static_cast<int>(months::Метла):
-        std::cout << "Метла ";
-        break;
-    case static_cast<int>(months::Верблюд):
-        std::cout << "Верблюд ";
-        break;
-    case static_cast<int>(months::Кентавр):
-        std::cout << "Кентавр ";
-        break;
-    case static_cast<int>(months::Орёл):
-        std::cout << "Орёл ";
-        break;
-    case static_cast<int>(months::Верблюд_быстроход):
-        std::cout << "Верблюд-быстроход ";
-        break;
-    case static_cast<int>(months::Ковёр_самолет):
-        std::cout << "Ковёр-самолет ";
-        break;
-
-    }
-}
-
 
 int resultat_gonki(int x, double dist) {
 
@@ -407,6 +349,9 @@ void gonka(double* arr, double dist,int q) {
     for (int i = 0; i < q; i++) {
         arr_result[i] = new double[2];
     }
+    for (int i = 0; i < 7; i++) {
+        std::cout << arr[i]<< " ";
+    }
 
     int n = 0;
     for (int i = 0; i < 7; i++) {
@@ -416,6 +361,7 @@ void gonka(double* arr, double dist,int q) {
             n++;
         }
     }
+
 
     double tmp1, tmp2;
     for (int k = 0; k < q-1; k++) {
@@ -434,92 +380,152 @@ void gonka(double* arr, double dist,int q) {
     int num = 1;
     for (int i = 0; i < q; i++) {
         std::cout << num << ". ";
-        enum_print(arr_result[i][0]);
+        zareg(arr_result[i][0]);
         std::cout << " " << arr_result[i][1];
         num++;
         std::cout << "\n";
     }
+    delete_two_dim_array(arr_result, q);
 }
+
+void print_info(Transport* f)
+{
+    f->print_info();
+}
+void print_type(Transport* f)
+{
+    f->print_type();
+}
+void delete_two_dim_array(double** matrix, int rows) {
+
+    for (int i = 0; i < rows; i++) {
+        delete[] matrix[i];
+    }
+    delete[] matrix;
+}
+
 int main()
 {
 
     setlocale(LC_ALL, "rus");
+    Zemlya zemlya;
+    Vozduh vozduh;
+    Vozduh_Zemlya vozduh_Zemlya;
+    Verblud verblud;
+    Kover_samolet kover_samolet;
+    Botinki_vezdehody botinki_vezdehody;
+    Metla metla;
+    Kentavr kentavr;
+    Orel orel;
+    Verblud_bystrohod verblud_bystrohod;
 
     
 
     std::cout << "Добро пожаловать в гоночный симулятор! \n";
-    int type, distance, reg_yes,TS;
+    int type;
+    double distance;
+    int TS;
+    int reg_yes;
     int reg_or_gonka;
     int exit_or_gonka;
     double arr[7] = { 0,0,0,0,0,0,0 };
      do {
         start:
-        std::cout << "1. Гонка для наземного транспорта.\n" << "2. Гонка для воздушного транспорта.\n" << "3. Гонка для наземного и воздушного транспорта.\n";
+        print_type(&zemlya);
+        print_type(&vozduh);
+        print_type(&vozduh_Zemlya);
         std::cout << "Выберите тип гонки: ";
-        type:
-        std::cin >> type;
-        if (type != 1 && type != 2 && type != 3) {goto type;}
+        do {
+            std::cin >> type;
+            if (type != 1 && type != 2 && type != 3) {
+                std::cout << "Введите 1, 2 или 3" << std::endl;
+            }
+        } while (type != 1 && type != 2 && type != 3);
+        
         std::cout << "Укажите длину дистанции (должна быть положительна): ";
-        distance:
-        std::cin >> distance;
-        if (distance < 0) { 
-            std::cout << "должна быть положительна" << std::endl;
-            goto distance; }
+        do {
+            std::cin >> distance;
+            if (distance < 0) {
+                std::cout << "Должна быть положительна" << std::endl;
+            }
+        } while (distance < 0);
+                   
         print_razdelitel();
         do
         {   std::cout << "Должно быть зарегестрировано минимум два ТС: \n1. Зарегистрировать ТС.\nВыберите действие: ";
-            reg_yes:
+    
+        do {
             std::cin >> reg_yes;
-            if (reg_yes != 1) { goto reg_yes; };
-            print_razdelitel();
-            do {reg:
-                print_reg();
+            if (reg_yes != 1) {
+                std::cout << "Введите 1" << std::endl;
+            }
+        } while (reg_yes != 1);
+        print_razdelitel();
+            do {
+            reg:
+           
+            reg_info(arr, distance, type);
+
+            print_info(&botinki_vezdehody);
+            print_info(&metla);
+            print_info(&verblud);
+            print_info(&kentavr);
+            print_info(&orel);
+            print_info(&verblud_bystrohod);
+            print_info(&kover_samolet);
+
                 std::cout << "Выберите ТС или 0 для окончания процесса регистрации. ";
-                
 
                 if (type == 1) {
                     std::cin >> TS;
                     if (TS == 2 || TS == 5 || TS == 7) {
                         print_razdelitel();
                         std::cout << "Попытка зарегистрировать неправильный тип ТС!\n";
-                        goto registration;
                     }else  
-                        if (arr[TS - 1] != 0) {
+                        if (arr[TS - 1] != 0 && TS!=0) {
                             print_razdelitel();
-                            enum_print(arr[TS - 1]);
-                            
+                            zareg(arr[TS - 1]);
                             std::cout << "уже зарегистрирован!\n";
-                            goto reg_info;
                         }
-                        goto in_arr;
+                        else if(TS == 1 || TS == 3 || TS == 4 || TS == 6){
+                            arr[TS - 1] = TS;
+                            print_razdelitel();
+                            zareg(arr[TS - 1]);
+                            std::cout << "успешно зарегистрирован!\n";
+                            
+                        }
                 }
-                if (type == 2) {
+                else if (type == 2) {
                     std::cin >> TS;
                     if (TS == 1 || TS == 3 || TS == 4 || TS==6) {
                         print_razdelitel();
                         std::cout << "Попытка зарегистрировать неправильный тип ТС!\n";
-                        goto registration;
-
+                       
                     }else  
-                        if (arr[TS - 1] != 0) {
+                        if (arr[TS - 1] != 0 && TS != 0) {
                             print_razdelitel();
-                            enum_print(arr[TS - 1]);
-                           
+                            zareg(arr[TS - 1]);
                             std::cout << "уже зарегистрирован!\n";
-                            goto reg_info;
                         }
-                        goto in_arr;
+                        else if (TS == 2 || TS == 5 || TS == 7) {
+                            arr[TS - 1] = TS;
+                            print_razdelitel();
+                            zareg(arr[TS - 1]);
+                            std::cout << "успешно зарегистрирован!\n";
+                            
+                        }
                 }
-                std::cin >> TS;
-                in_arr:
-                if (TS == 0) { break; print_razdelitel();};
-               
-                arr[TS - 1] = TS;
-                registration:
-                registration(TS, type);
-                reg_info:
-                reg_info(arr, distance, type);
-               
+                else if (type == 3) {
+                  
+                        std::cin >> TS;
+                        arr[TS - 1] = TS;
+                        print_razdelitel();
+                        zareg(arr[TS - 1]);
+                        std::cout << "успешно зарегистрирован!\n";
+                    
+                }
+                else if(TS == 0) { break; print_razdelitel(); };
+                              
                 } while (TS != 0);
                 print_razdelitel();
         } while (quantity(arr) < 2);
@@ -529,6 +535,7 @@ int main()
         std::cin >> reg_or_gonka;
         
             if (reg_or_gonka == 1) {
+                print_razdelitel();
                  goto reg;
             }else if (reg_or_gonka == 2) {
                 print_razdelitel();
@@ -549,10 +556,13 @@ int main()
          clear_arr(arr);
          goto start; 
      }
+
      else if (exit_or_gonka == 2) { break; }
       } while (exit_or_gonka != 2);
       print_razdelitel();
       std::cout << "До свидания!\n";
+
+      return 0;
   
 }
 

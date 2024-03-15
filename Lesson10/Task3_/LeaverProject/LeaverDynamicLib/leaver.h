@@ -1,6 +1,6 @@
 // פאיכ DynamicMathPower.h
 #pragma once
-#ifdef MATHPOWERLIBRARYDYNAMIC_EXPORTS
+#ifdef LEAVERDYNAMICLIB_EXPORTS
 #define MATHPOWERLIBRARY_API __declspec(dllexport)
 #else
 #define MATHPOWERLIBRARY_API __declspec(dllimport)
