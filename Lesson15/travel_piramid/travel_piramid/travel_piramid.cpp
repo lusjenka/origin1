@@ -68,33 +68,62 @@ int main()
     do {
         cout << "Введите команду: ";
         cin >> step;
-        cout << "Ok.\n";
+        
         if (step == "exit") { break; }
 
-        cout << "Вы находитесь здесь: ";
-               
         if (step == "left") { 
-            cout << arr_level[left_index(i2)] << " ";
-            leftOrRight(left_index(i2));
-            cout << arr[parent_index(left_index(i2))] << ") ";
-            cout << arr[left_index(i2)] << endl; 
-            i2 = left_index(i2);
+            if (left_index(i2) > 9) { cout << "Ошибка! Отсутствует левый потомок.\n\nВы находитесь здесь: ";
+            cout << arr_level[i2];
+            leftOrRight(i2);
+            cout << arr[parent_index(i2)] << ") ";
+            cout << arr[i2] << endl; 
+            }
+            else {
+                cout << "Ok.\n";
+                cout << "Вы находитесь здесь: ";
+                cout << arr_level[left_index(i2)] << " ";
+                leftOrRight(left_index(i2));
+                cout << arr[parent_index(left_index(i2))] << ") ";
+                cout << arr[left_index(i2)] << endl;
+                i2 = left_index(i2);
+            }
+
         }
         else if (step == "right") { 
-            cout << arr_level[right_index(i2)] << " ";
-            leftOrRight(right_index(i2));
-            cout << arr[parent_index(right_index(i2))] << ") ";
-            cout << arr[right_index(i2)] << endl;
-            i2 = right_index(i2);
+            if (right_index(i2) > 9) { cout << "\nОшибка! Отсутствует правый потомок.\nВы находитесь здесь: ";
+            cout << arr_level[i2];
+            leftOrRight(i2);
+            cout << arr[parent_index(i2)] << ") ";
+            cout << arr[i2] << endl;
+            }
+            else {
+                cout << "Ok.\n";
+                cout << "Вы находитесь здесь: ";
+                cout << arr_level[right_index(i2)] << " ";
+                leftOrRight(right_index(i2));
+                cout << arr[parent_index(right_index(i2))] << ") ";
+                cout << arr[right_index(i2)] << endl;
+                i2 = right_index(i2);
+            }
         }
         else if (step == "up") { 
-            cout << arr_level[parent_index(i2)] << " ";
-            leftOrRight(parent_index(i2));
-            cout << arr[parent_index(parent_index(i2))] << ") ";
-            cout << arr[parent_index(i2)] << endl;
-            i2 = parent_index(i2);
+            if (i2 == 0) { cout << "\nОшибка! Отсутствует родитель.\nВы находитесь здесь : ";
+            cout << arr_level[i2];
+            leftOrRight(i2);
+            cout << arr[parent_index(i2)] << ") ";
+            cout << arr[i2] << endl;
+            }
+            else {
+                cout << "Ok.\n";
+                cout << "\nВы находитесь здесь: ";
+                cout << arr_level[parent_index(i2)] << " ";
+                leftOrRight(parent_index(i2));
+                cout << arr[parent_index(parent_index(i2))] << ") ";
+                cout << arr[parent_index(i2)] << endl;
+                i2 = parent_index(i2);
+            }
         }
-        
+                
     } 
     while (step != "exit");
     
