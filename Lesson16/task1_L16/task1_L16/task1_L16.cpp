@@ -8,24 +8,22 @@
 int main()
 {
     setlocale(LC_ALL, "rus");
-    int sum;
+    
     std::string s;
-    while (true)
+    while (1)
     {
         int sum = 0;
         std::cout << "Введите строку: ";
         std::cin >> s;
-        char* char_array = new char[s.length() + 1];
-        char_array[s.length()] = '\0';
-        for (int i = 0; i < s.length(); i++) {
-            char_array[i] = s[i];
-            sum = sum + static_cast<int>(s[i]);
+        if (s != "exit")
+        {
+            int k = 0;
+            for (int i = 0; i < s.size(); i++) {
+                sum += s[i];
+            }
+            std::cout << "Наивный хэш строки " << s << " = " << sum << "\n";
         }
-        std::cout << "Наивный хэш строки " << s << " = " << sum;
-        
-        std::cout << "\n";
-        delete[] char_array;
-        if (s == "exit")
+        else
         {
             break;
         }
