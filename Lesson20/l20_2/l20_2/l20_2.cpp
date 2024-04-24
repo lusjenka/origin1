@@ -17,24 +17,46 @@ public:
 		std::cout << "Вызван конструктор." << "\n";
 
 	}
+	
+	smart_array(const smart_array& other) :size_(other.size_), ptr_(new int[size_])
+	{
+		if (this != &other)
+		{
+			std::cout << "Вызван конструктор копирования." << "\n";
+			for (int i = 0; i < size_; ++i)
+			{
+				ptr_[i] = other.ptr_[i];
+			}
+		}
+	}
+	
+	smart_array& operator=(const smart_array& other)
+	{
+		if (this != & other)
+		{
+			std::cout << "Вызван оператор присваивания." << "\n";
+			delete[] ptr_;
+			size_ = other.size_;
+			ptr_ = new int[size_];
+			for (int i = 0; i < size_; ++i)
+			{
+				ptr_[i] = other.ptr_[i];
+			}
+		}
+		
+		return *this;
+	}
+	
 	~smart_array()
 	{
-		if (ptr_ != nullptr)
-		{
-			std::cout << ptr_ << "\n";
-			std::cout << "Вызван деструктор." << "\n";
-			//delete[] ptr_;
-			ptr_ = nullptr;
-			std::cout << ptr_ << "\n";
-		}
-		else
-		{
-			std::cout << "The end!";
-		}
+		std::cout << "Вызван деструктор." << "\n";
+		delete[] ptr_;
+
 		
  	}
 	void add_element(int value)
 	{
+
 		if (index_ < size_)
 		{
 			ptr_[index_] = value;
@@ -48,6 +70,11 @@ public:
 	}
 	int get_element(int ind_)
 	{
+		if ((ind_ < 0) || (ind_ > index_))
+		{
+			std::cout << "Некорректный индекс - ";
+			return ind_;
+		}
 		std::cout << "Получен элемент под индексом " << ind_ << ": ";
 		return ptr_[ind_];
 	}

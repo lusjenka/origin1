@@ -21,6 +21,8 @@ public:
 		std::cout << "Вызван деструктор." << "\n";
 
 	}
+	smart_array(const smart_array&) = delete;//Запретить конструктор копирования
+	smart_array& operator=(const smart_array&) = delete;//Запретить оператор присваивания 
 	void add_element(int value)
 	{
 		if (index_ < size_)
@@ -36,8 +38,16 @@ public:
 	}
 	int get_element(int ind_)
 	{
-		std::cout << "Получен элемент под индексом " << ind_<< ": ";
-		return ptr_[ind_];
+		if ((ind_< 0) || (ind_ > index_))
+		{
+			std::cout << "Некорректный индекс. Ошибка - ";
+			return 0;
+		}
+		else {
+			std::cout << "Получен элемент под индексом " << ind_ << ": ";
+			return ptr_[ind_];
+		}
+			
 	}
 };
 
@@ -53,6 +63,8 @@ int main()
 		arr.add_element(15);
 
 		std::cout << arr.get_element(3) << std::endl;
+		std::cout << arr.get_element(-4) << std::endl;
+		std::cout << arr.get_element(6) << std::endl;
 	}
 	catch (const std::exception& ex) {
 		std::cout << ex.what() << std::endl;
