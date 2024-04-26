@@ -18,16 +18,14 @@ public:
 
 	}
 	
-	smart_array(const smart_array& other) :size_(other.size_), ptr_(new int[size_])
+	smart_array(const smart_array& other) :size_(other.size_),index_(other.index_), ptr_(new int[size_])
 	{
-		if (this != &other)
-		{
 			std::cout << "Вызван конструктор копирования." << "\n";
+
 			for (int i = 0; i < size_; ++i)
 			{
 				ptr_[i] = other.ptr_[i];
 			}
-		}
 	}
 	
 	smart_array& operator=(const smart_array& other)
@@ -37,6 +35,7 @@ public:
 			std::cout << "Вызван оператор присваивания." << "\n";
 			delete[] ptr_;
 			size_ = other.size_;
+			index_ = other.index_;
 			ptr_ = new int[size_];
 			for (int i = 0; i < size_; ++i)
 			{
