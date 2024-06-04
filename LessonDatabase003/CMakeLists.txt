@@ -1,0 +1,7 @@
+cmake_minimum_required(VERSION 3.10)
+project(LessonDatabase003)
+set(PostgreSQL_ADDITIONAL_VERSIONS "16")
+add_subdirectory("E:\\Study\\libpqxx-7.9.0" libpqxx_build)
+add_executable(LessonDatabase003 main.cpp)
+target_compile_features (LessonDatabase003 PRIVATE cxx_std_17)
+target_link_libraries (LessonDatabase003 PRIVATE pqxx)
