@@ -1,42 +1,76 @@
-#include <iostream>
-#include <pqxx/pqxx>
-#include <string>
-#include <map>
-#include  <Windows.h>
-#pragma execution_character_set("utf-8")
+
+#include "ClientsDB.h"
 
 
-int main()
+int main(int argc, char** argv)
 {
-	//setlocale(LC_ALL, "Russian");
-	SetConsoleCP(CP_UTF8);
-	SetConsoleOutputCP(CP_UTF8);
+    //setlocale(LC_ALL, "Russian");
+    SetConsoleCP(CP_UTF8);
+    SetConsoleOutputCP(CP_UTF8);
 
-	setvbuf(stdout, nullptr, _IOFBF, 1000);
-	try
-	{
-		pqxx::connection c(
-			"host=localhost "
-			"port=5432 "
-			"dbname=postgres "
-			"user=postgres "
-			"password=479Hgf43#_pgS");
+    setvbuf(stdout, nullptr, _IOFBF, 1000);
+    try
+    {
+        std::string connection_string = "host=localhost port=5432 dbname=clients user=postgres password=479Hgf43";
+        ClientsDB db(connection_string);
+        db.dropTables();
+        db.createTables();
 
-		std::cout << "Hello" << std::endl;
+        db.addClient("Иван", "Иванов", "ivanov@mail.ru", "89156468745");
+        db.show();
 
-		pqxx::transaction t{ c };
 
-		auto values = t.query<int, std::string>("SELECT * FROM �����������");
-		for (std::tuple<int, std::string> value : values)
-		{
-			std::cout << "id: " << std::get<0>(value) << " ";
-			std::cout << "���: " << std::get<1>(value) << std::endl;
-		}
-	}
-	catch (const std::exception& e)
-	{
-		std::cout << "Error happened:" << e.what() << std::endl;
-	}
-	return 0;
-	
-}
+        db.addClient("Петр", "Петров", "petrov@mail.ru", "");
+        db.show();
+
+        db.addClient("Ксения", "Сидорова", "sidorova@mail.ru", "89776334565");
+        db.show();
+
+        try
+        {
+            db.addPhone("Иван", "89776224841");
+            db.show();
+
+            db.addPhone("Ксения", "89155662771");
+            db.show();
+        }
+        catch (const std::exception& ex)
+        {
+            std::cout << "Exception happened: " << ex.what() << std::endl;
+        }
+
+        try
+        {
+            db.updateClient("ivanov@mail.ru", "Иван", "Иванченко", "new_ivanov@mail.ru"); //меняем фамилию Иванова
+            db.show();
+
+            db.updateClient("petrov@mail.ru", "Петр", "Петренко", "new_petrov@mail.ru");//меняем фамилию Петрова
+            db.show();
+        }
+        catch (const std::exception& ex)
+        {
+            std::cout << "Exception happened: " << ex.what() << std::endl;
+        }
+
+        db.removePhone("new_ivanov@mail.ru", "+79115464033");//удаляем телефон Иванченко
+
+        db.removeClient("new_ivanov@mail.ru");//удаляем Иванченко
+
+        std::vector<Client> foundClients = db.findClients("Иван");
+        for (const auto& [name, surname, email, phones] : foundClients)
+        {
+            std::cout << "Найден клиент: " << name << " " << surname << " " << email << " " << std::endl;
+            
+        }
+        db.show();
+
+       
+
+    }
+    catch (const std::exception& ex)
+    {
+        std::cout << "Exception happened: " << ex.what() << std::endl;
+    }
+
+    return 0;
+};
