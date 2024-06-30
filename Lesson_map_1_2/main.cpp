@@ -15,7 +15,7 @@ static void sumVectors(double& sumOfVectors, const std::vector<int> newVector1, 
 int main()
 {
     setlocale(LC_ALL, "rus");
-    std::cout << "Количество аппаратных ядер: " << std::thread::hardware_concurrency() << "\n\n";
+    std::cout << "РљРѕР»РёС‡РµСЃС‚РІРѕ Р°РїРїР°СЂР°С‚РЅС‹С… СЏРґРµСЂ: " << std::thread::hardware_concurrency() << "\n\n";
     std::cout << std::setw(9) << "\t\t1000" << "\t        10000" << "\t       100000" << "\t     1000000";
     std::vector<int> vector1;
     std::vector<int> vector2;
@@ -26,11 +26,11 @@ int main()
     {
         if (countT == 1)
         {
-            std::cout << std::endl << countT << " потоков";
+            std::cout << std::endl << countT << " РїРѕС‚РѕРєРѕРІ";
         }
         else
         {
-            std::cout << std::endl << countT << " потоков";
+            std::cout << std::endl << countT << " РїРѕС‚РѕРєРѕРІ";
         }
 
         for (auto& countV : sizeOfVector)
