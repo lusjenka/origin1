@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <chrono>
 #include <functional>
 #include <mutex>
