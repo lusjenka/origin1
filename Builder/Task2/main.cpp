@@ -107,16 +107,41 @@ public:
 
 };
 
+class AdvancedSqlSelectQueryBuilder : public SqlSelectQueryBuilder {
+private:
+	char sign;
+
+public:
+	AdvancedSqlSelectQueryBuilder MoreLess(std::string search_name_of_colums, std::string date, char sign) {
+		this->sign = sign;
+		fields.search_name_of_colums.push_back(search_name_of_colums);
+		fields.date.push_back(date);
+
+		return *this;
+	}
+
+	std::string BuildQuery() override {
+
+
+		fields.select_query = "SELECT " + count_cols(fields.name_of_colums) + " FROM " + fields.name_of_table + " WHERE " + search_name_of_cols_and_sign(fields.search_name_of_colums, fields.date, sign) + "; ";
+		return fields.select_query;
+	}
+
+	
+};
+
 
 int main() {
 
     SqlSelectQueryBuilder query_builder;
     query_builder.AddColum("name").AddColum("phone");
-    query_builder.AddFrom("students");
-    query_builder.AddWhere("id", "42").AddWhere("name", "John");
-    std::cout << query_builder.BuildQuery();
-    std::cout << std::endl;
+   
+    AdvancedSqlSelectQueryBuilder query_builders;
+    query_builders.AddColumns({ "name", "phone" });
+    query_builders.AddFrom("students");
+    query_builders.MoreLess("id", "42", '>');
 
+    std::cout << query_builders.BuildQuery();
 
 }
 
