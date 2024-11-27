@@ -1,75 +1,19 @@
-#include "stopwatch.h"
+#include "Stopwatch.h"
 
 Stopwatch::Stopwatch(QObject *parent)
-    : QObject{parent}
+    : QObject{}
 {
-    isStart_ = false;
-    currentTime_ = 0.;
-    startTime_ = 0.;
-    currentLap_ = 1;
-    qTimer = new QTimer(this);
+    //cur_time = 0. ;
+    //qTimer = new QTimer(this);
+}
+Stopwatch::~Stopwatch()
+{
+    qDebug() << "Signals delete";
 }
 
-void Stopwatch::Start()
+/*void Stopwatch::sig_SendCircle(int m_, int s_, int ms_)
 {
-    isStart_ = true;
-    qTimer->start(100);
-    emit sig_Start();
-}
-
-void Stopwatch::Stop()
-{
-    isStart_ = false;
-    qTimer->stop();
-    emit sig_Stop();
-}
-
-void Stopwatch::Clear()
-{
-    currentTime_ = 0.;
-    startTime_ = 0.;
-    currentLap_ = 1;
-    emit sig_Clear();
-}
-
-void Stopwatch::Lap()
-{
-    emit sig_Lap();
-}
-
-void Stopwatch::setTime(float time)
-{
-    currentTime_ = time;
-}
-
-void Stopwatch::setLap(int lap)
-{
-    currentLap_ = lap;
-}
-
-float Stopwatch::getCurrentTime()
-{
-    return currentTime_;
-}
-
-float Stopwatch::getStartTime()
-{
-    return startTime_;
-}
-
-int Stopwatch::getCurrentLap()
-{
-    startTime_ = currentTime_;
-    return currentLap_;
-}
-
-bool Stopwatch::isStart()
-{
-    return isStart_;
-}
-
-QTimer *Stopwatch::getQTimer()
-{
-    return qTimer;
-}
-
+    m_ = m;
+    s_ = s;
+    ms_ = ms;
+}*/

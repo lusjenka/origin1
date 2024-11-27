@@ -1,26 +1,25 @@
 #include "mainwindow.h"
-#include "ui_mainwindow.h"
+#include "./ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    sw = new Stopwatch(this);
+    m = 0;
+    s = 0;
+    ms = 0;
+    circle = 0;
+    //ui->label->setText(QString::number(MainWindow::cur_time));
+   // ui->label->setText(0);
 
+    qTimer = new QTimer();
+        connect(qTimer, SIGNAL(timeout()), this, SLOT(slotTimerAlarm()));
+      //  connect(qTimer, &Stopwatch::sig_SendCircle, this, &MainWindow::RcvSignal);
+        //qTimer->start(1000);
 
-    ui->pb_startStop->setText("Старт");
-    ui->pb_clear->setText("Очистить");
-    ui->pb_lap->setText("Круг");
-    ui->l_time->setText("Время: ");
-    ui->l_showTime->setText(QString::number(sw->getCurrentTime()) + " сек");
-    ui->pb_lap->setEnabled(sw->isStart());
-
-    connect(sw, &Stopwatch::sig_Start, this, &MainWindow::RcvSignalStart);
-    connect(sw, &Stopwatch::sig_Stop, this, &MainWindow::RcvSignalStop);
-    connect(sw, &Stopwatch::sig_Clear, this, &MainWindow::RcvSignalClear);
-    connect(sw, &Stopwatch::sig_Lap, this, &MainWindow::RcvSignalLap);
-    connect(sw->getQTimer(), &QTimer::timeout, this, &MainWindow::RcvSignalShowTime);
+    //connect(qTimer, &QTimer::timeout, this, &Foo::processOneThing);
+      //  timer->start();
 }
 
 MainWindow::~MainWindow()
@@ -28,66 +27,89 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_pb_startStop_clicked()
+void MainWindow::slotTimerAlarm()
 {
-    if (!sw->isStart())
+    //ui->label->setText(QTime::currentTime().toString("hh:mm:ss"));
+   // ui->label->setText(QString::number(MainWindow::cur_time));
+   // cur_time = cur_time + 0.1;
+    //ui->label->setText("Время: " + QString::number(MainWindow::cur_time));
+    ms = ms + 100;
+    if(ms>=1000)
     {
-        sw->Start();
-        ui->pb_startStop->setText("Стоп");
+        ms = 0;
+        s++;
+    }
+    if(s>=60)
+    {
+        s = 0;
+        m++;
+    }
+    ui->label_2->setText(QString::number(m) + " : ");
+    ui->label_3->setText(QString::number(s));
+    ui->label_4->setText(" : " + QString::number(ms));
+}
+
+
+void MainWindow::on_pB_Start_clicked()
+{
+    flag = !flag;
+    if(flag)
+    {
+     ui->pB_Start->setText("Старт");
+     qTimer->stop();
     }
     else
     {
-        sw->Stop();
-        ui->pb_startStop->setText("Старт");
+      ui->pB_Start->setText("Стоп");
+      qTimer->start(100);
+
+       //while(ui->pB_Start->text() != "Старт")
+       //{
+      //cur_time = cur_time + 0.1;
+       //}
     }
-    ui->pb_lap->setEnabled(sw->isStart());
-}
-
-void MainWindow::on_pb_clear_clicked()
-{
-    sw->Clear();
-}
-
-void MainWindow::on_pb_lap_clicked()
-{
-    sw->Lap();
-}
-
-void MainWindow::RcvSignalStart()
-{
 
 }
 
-void MainWindow::RcvSignalStop()
-{
 
-}
-
-void MainWindow::RcvSignalClear()
+void MainWindow::on_pB_Circle_clicked()
 {
-    ui->l_showTime->setText(QString::number(sw->getCurrentTime()) + " сек");
-    ui->tb_laps->clear();
-}
-
-void MainWindow::RcvSignalLap()
-{
-    ui->tb_laps->append("Круг " + QString::number(sw->getCurrentLap()) + ", время: " +
-                       QString::number(sw->getCurrentTime() - sw->getStartTime()) + " сек");
-    sw->setLap(sw->getCurrentLap() + 1);
-}
-
-void MainWindow::RcvSignalShowTime()
-{
-    if(sw->isStart())
+     if(ui->pB_Start->text() == "Стоп")
     {
-        ui->l_showTime->setText(QString::number(sw->getCurrentTime()) + " сек");
-        sw->setTime(sw->getCurrentTime() + 0.1);
-    }
+
+    circle++;
+
+    QString m_ = ui->label_2->text();
+    QString s_ = ui->label_3->text();
+    QString ms_ = ui->label_4->text();
+
+    ui->textBrowser->append(QString("Круг № %1 Время:  %2  %3  %4").arg(circle).arg(m_).arg(s_).arg(ms_));
+   // emit qTimer->sig_SendCircle(m_,s_,ms_);
+    //ui->textBrowser->append("Круг №" + circle + " : " + m_ + " : " + s_+ " : " + ms_);
+
+
+     }
+
 }
 
+/*void MainWindow::RcvSignal(QString m_, QString s_, QString ms_)
+{
+  //  m_ = m;
+ ui->textBrowser->append();
+}*/
 
 
+void MainWindow::on_pushButton_3_clicked()
+{
+    ui->textBrowser->clear();
+    qTimer->stop();
+    m = 0;
+    s = 0;
+    ms = 0;
 
+    ui->label_2->setText(QString::number(m) + " : ");
+    ui->label_3->setText(QString::number(s));
+    ui->label_4->setText(" : " + QString::number(ms));
 
-
+}
 

@@ -2,7 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "stopwatch.h"
+#include <QDebug>
+#include "Stopwatch.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -17,19 +18,22 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_pb_startStop_clicked();
-    void on_pb_clear_clicked();
-    void on_pb_lap_clicked();
+    void slotTimerAlarm();
 
-    void RcvSignalShowTime();
-    void RcvSignalStart();
-    void RcvSignalStop();
-    void RcvSignalClear();
-    void RcvSignalLap();
+    void on_pB_Start_clicked();
 
+    void on_pB_Circle_clicked();
+
+    //void RcvSignal (QString m_, QString s_, QString ms_);
+
+    void on_pushButton_3_clicked();
 
 private:
     Ui::MainWindow *ui;
-    Stopwatch* sw;
+    QTimer* qTimer;
+    int m,s,ms;
+    bool flag = true;
+    int circle;
+
 };
 #endif // MAINWINDOW_H
