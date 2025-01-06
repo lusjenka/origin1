@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include "Stopwatch.h"
 #include "./ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
@@ -14,7 +15,7 @@ MainWindow::MainWindow(QWidget *parent)
    // ui->label->setText(0);
 
     qTimer = new QTimer();
-        connect(qTimer, SIGNAL(timeout()), this, SLOT(slotTimerAlarm()));
+        connect(qTimer, &QTimer::timeout, this, &MainWindow::slotTimerAlarm);
       //  connect(qTimer, &Stopwatch::sig_SendCircle, this, &MainWindow::RcvSignal);
         //qTimer->start(1000);
 
@@ -106,6 +107,9 @@ void MainWindow::on_pushButton_3_clicked()
     m = 0;
     s = 0;
     ms = 0;
+    circle = 0;
+    ui->pB_Start->setText("Старт");
+
 
     ui->label_2->setText(QString::number(m) + " : ");
     ui->label_3->setText(QString::number(s));

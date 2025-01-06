@@ -3,7 +3,8 @@
 
 #include <QMainWindow>
 #include <QDebug>
-#include "Stopwatch.h"
+#include <QtConcurrent>
+#include "ExampleRace.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -16,26 +17,42 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    void StartRace( void );
+
 
 private slots:
-    void slotTimerAlarm();
 
-    void on_pB_Start_clicked();
-
-    void on_pB_Circle_clicked();
-
-    //void RcvSignalShowTime();
-
-    void on_pushButton_3_clicked();
-
-
+    void on_pb_start_clicked();
 
 private:
     Ui::MainWindow *ui;
-    QTimer* qTimer;
-    int m,s,ms;
-    bool flag = true;
-    int circle;
+    uint32_t number = 0, countFinish = 0;
+
+    QMutex m;
+    Controller *race1;
+    Controller *race2;
+
+    ExampleRace *concurRace1;
+    ExampleRace *concurRace2;
+
 
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #endif // MAINWINDOW_H

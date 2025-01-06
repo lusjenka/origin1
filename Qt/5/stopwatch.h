@@ -16,6 +16,8 @@ public:
 
 signals:
     //void sig_SendCircle(QString m_, QString s_, QString ms_);
+
+
  };
 
 
