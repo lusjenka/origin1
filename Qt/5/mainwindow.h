@@ -34,6 +34,7 @@ private:
     Ui::MainWindow *ui;
     QTimer* qTimer;
     int m,s,ms;
+    int m_circle,s_circle,ms_circle;
     bool flag = true;
     int circle;
 
